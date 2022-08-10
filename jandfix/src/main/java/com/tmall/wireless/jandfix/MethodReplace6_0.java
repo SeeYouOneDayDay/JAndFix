@@ -34,8 +34,9 @@ public class MethodReplace6_0 implements IMethodReplace {
     }
 
     private void replaceReal(long src, long dest) throws Exception {
-        // @TODO 搞清楚方法数量意义
+        // 个人理解 地址偏差。 计算原理:同一对象中，两个连续方法，地址是挨着的，相差可计算出偏差
         int methodSize = MethodSizeUtils.methodSize();
+        // 方法序列偏差
         int methodIndexOffset = MethodSizeUtils.methodIndexOffset();
         //methodIndex need not replace,becase the process of finding method in vtable
         int methodIndexOffsetIndex = methodIndexOffset / 4;

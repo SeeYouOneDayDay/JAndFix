@@ -35,6 +35,7 @@ public class MethodSize6_0 implements IMethodSize {
                 methodSize = -methodSize;
             }
 
+            // 取方法1序列
             //init methodIndexOffset
             int method1MethodIndex = 0;
             Method[] methods = MethodSizeCase.class.getDeclaredMethods();
