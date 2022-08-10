@@ -1,9 +1,5 @@
 package com.tmall.wireless.test;
 
-import com.tmall.wireless.AndFixApplication;
-
-import junit.framework.Test;
-
 import java.lang.reflect.Method;
 
 /**
