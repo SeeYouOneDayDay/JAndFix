@@ -34,6 +34,7 @@ public class MethodReplace6_0 implements IMethodReplace {
     }
 
     private void replaceReal(long src, long dest) throws Exception {
+        // @TODO 搞清楚方法数量意义
         int methodSize = MethodSizeUtils.methodSize();
         int methodIndexOffset = MethodSizeUtils.methodIndexOffset();
         //methodIndex need not replace,becase the process of finding method in vtable

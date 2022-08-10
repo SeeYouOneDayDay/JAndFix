@@ -28,6 +28,8 @@ public class MethodSize6_0 implements IMethodSize {
             long method1Addr = (long) artMethodField.get(method1);
             long method2Addr = (long) artMethodField.get(method2);
             long method3Addr = (long) artMethodField.get(method3);
+            // 计算sizeof: 同一个类中ArtMethod在内存地址是按顺序紧密排列的
+            // 可以简写  Method.class.getSuperclass() 这个类的 artMethod 就是artMethod地址。哈哈
             methodSize = (int) (method2Addr - method1Addr);
             if (methodSize < 0) {
                 methodSize = -methodSize;
@@ -43,7 +45,10 @@ public class MethodSize6_0 implements IMethodSize {
                     break;
                 }
             }
-
+            //这是什么逻辑？
+            //https://github.com/SeeYouOneDayDay/LearnEpic.git
+            //ArtMethod.java    public ArtMethod backup()
+            // 偏移四个单位验证，最终确认偏移值？ 这个需要区分art模式、dalvik模式和32位、64位 两重条件
             for (int i = 1, size = methodSize / 4; i < size; i++) {
                 int value1 = UnsafeProxy.getIntVolatile(method1Addr + i * 4);
                 int value2 = UnsafeProxy.getIntVolatile(method2Addr + i * 4);
