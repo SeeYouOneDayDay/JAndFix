@@ -49,11 +49,14 @@ public class MethodSize6_0 implements IMethodSize {
             //这是什么逻辑？
             //https://github.com/SeeYouOneDayDay/LearnEpic.git
             //ArtMethod.java    public ArtMethod backup()
-            // 偏移四个单位验证，最终确认偏移值？ 这个需要区分art模式、dalvik模式和32位、64位 两重条件
+            // 偏移四个单位验证，最终确认偏移值？
+            // 这个需要区分art模式、dalvik模式和32位、64位？
             for (int i = 1, size = methodSize / 4; i < size; i++) {
+                // 为什么偏移值需要*4？
                 int value1 = UnsafeProxy.getIntVolatile(method1Addr + i * 4);
                 int value2 = UnsafeProxy.getIntVolatile(method2Addr + i * 4);
                 int value3 = UnsafeProxy.getIntVolatile(method3Addr + i * 4);
+                // 根据方法序列来验证
                 if (value1 == method1MethodIndex
                         && value2 == method1MethodIndex + 1
                         && value3 == method1MethodIndex + 2) {
