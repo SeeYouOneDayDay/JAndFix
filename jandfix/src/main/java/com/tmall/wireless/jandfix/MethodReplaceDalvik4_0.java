@@ -7,7 +7,6 @@ import java.lang.reflect.Modifier;
 /**
  * Created by jingchaoqinjc on 17/5/15.
  */
-
 public class MethodReplaceDalvik4_0 implements IMethodReplace {
 
     private final static int DIRECT_METHOD_OFFSET = 25;
@@ -25,7 +24,16 @@ public class MethodReplaceDalvik4_0 implements IMethodReplace {
             e.printStackTrace();
         }
     }
-
+    //android 4替换使用方法
+    // 1. 获取替换方法、目标方法的虚地址
+    // 1.1 偏移值计算,依赖访问符(final、static、private为直接访问，否则间接访问)
+    // 直接访问,offset：25(直接访问方法偏移值) *4
+    // 间接访问,offset：27(间接访问方法偏移值) *4
+    // 1.2 通过Unsafe.getIntVolatile(method对象，offset)
+    // 2. 计算真正地址
+    // 2.1. 获取method的变量slot值
+    // 2.2 真地址= 虚地址(1获取的值)+ slot值*44(方法字节数)
+    // 3. 替换方法
     @Override
     public void replace(Method src, Method dest) {
         try {
