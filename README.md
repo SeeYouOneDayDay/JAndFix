@@ -257,6 +257,7 @@ public class MethodReplace6_0 implements IMethodReplace {
         int methodSize = MethodSizeUtils.methodSize();
         int methodIndexOffset = MethodSizeUtils.methodIndexOffset();
         //methodIndex need not replace,becase the process of finding method in vtable
+       // 每个方法是4个字节？ 64位、32是否有区别。 @todo 确认为什么
         int methodIndexOffsetIndex = methodIndexOffset / 4;
         //why 1? index 0 is declaring_class, declaring_class need not replace.
         for (int i = 1, size = methodSize / 4; i < size; i++) {
